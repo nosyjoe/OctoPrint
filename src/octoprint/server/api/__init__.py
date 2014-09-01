@@ -30,6 +30,7 @@ from . import settings as api_settings
 from . import timelapse as api_timelapse
 from . import users as api_users
 from . import log as api_logs
+from . import wificfg as api_wificfg
 
 
 VERSION = "1.0"

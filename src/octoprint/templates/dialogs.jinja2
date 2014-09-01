@@ -101,3 +101,29 @@
         <a href="#" class="btn btn-primary" data-bind="click: keepAccessControl, enable: validData(), css: {disabled: !validData()}">Keep Access Control Enabled</a>
     </div>
 </div>
+
+<div id="wifi_config_dialog" class="modal hide fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header">
+        <h3><i class="icon-warning-sign"></i> Configure Wifi</h3>
+    </div>
+    <div class="modal-body">
+        <p>
+            <strong>Please select the wifi you want to use.</strong>
+        </p>
+        <p>
+            Here you can find a list of Wifi networks. Select one of them and optionally enter a password to make you Mr Beam join the Wifi. You can also choose to keep an extra Wifi your Mr Beam.
+        </p>
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="first_run_username">Password</label>
+                <div class="controls">
+                    <select multiple="multiple" height="5" class="list-group" data-bind="options:ssids, selectedOptions:selectedSSIDs"> </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-danger" data-bind="click: keepInternalWifi">Keep stand-alone Wifi</a>
+        <a href="#" class="btn btn-primary" data-bind="click: joinExistingWifi">Join selected Wifi</a>
+    </div>
+</div>

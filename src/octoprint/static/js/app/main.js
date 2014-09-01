@@ -409,9 +409,12 @@ $(function() {
         });
 
         if (CONFIG_FIRST_RUN) {
-            var firstRunViewModel = new FirstRunViewModel();
-            ko.applyBindings(firstRunViewModel, document.getElementById("first_run_dialog"));
-            firstRunViewModel.showDialog();
+            // var firstRunViewModel = new FirstRunViewModel();
+            // ko.applyBindings(firstRunViewModel, document.getElementById("first_run_dialog"));
+            // firstRunViewModel.showDialog();
+            var wifiConfigViewModel = new WifiConfigViewModel();
+			ko.applyBindings(wifiConfigViewModel, document.getElementById("wifi_config_dialog"));
+            wifiConfigViewModel.showDialog();
         }
 
     }

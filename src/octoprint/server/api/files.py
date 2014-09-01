@@ -22,7 +22,10 @@ def readGcodeFiles():
 	files = _getFileList(FileDestinations.LOCAL)
 	files.extend(_getFileList(FileDestinations.SDCARD))
 	return jsonify(files=files, free=util.getFreeBytes(settings().getBaseFolder("uploads")))
-
+	
+@api.route("/files2", methods=["GET"])
+def readGcodeFiles():
+	return "test"
 
 @api.route("/files/<string:origin>", methods=["GET"])
 def readGcodeFilesForOrigin(origin):

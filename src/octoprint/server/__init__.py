@@ -134,6 +134,8 @@ class Server():
 		logger = logging.getLogger(__name__)
 
 		logger.info("Starting OctoPrint (%s)" % VERSION)
+		# debugging only, remove
+		logger.info("UI API KEY: " + UI_API_KEY)
 
 		eventManager = events.eventManager()
 		gcodeManager = gcodefiles.GcodeManager()

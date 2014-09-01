@@ -172,6 +172,8 @@ class Settings(object):
 			self._configfile = configfile
 		else:
 			self._configfile = os.path.join(self.settings_dir, "config.yaml")
+
+		print "config file: " + self._configfile
 		self.load(migrate=True)
 
 	def _init_settings_dir(self, basedir):
