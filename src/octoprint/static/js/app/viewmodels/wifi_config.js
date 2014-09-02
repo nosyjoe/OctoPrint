@@ -2,7 +2,7 @@ function WifiConfigViewModel() {
     var self = this;
 
     self.ssids = ko.observableArray(undefined);
-	self.selectedSSIDs = ko.observableArray(undefined);
+	self.selectedSSID = ko.observable(undefined);
     self.password = ko.observable(undefined);
 	
 	// Load all available countries /v1/countries
@@ -30,7 +30,7 @@ function WifiConfigViewModel() {
 
         var data = {
             "joinwifi": true,
-            "ssid": self.selectedSSIDs[0],
+            "ssid": self.selectedSSID(),
             "password": self.password()
         };
         self._sendData(data);
