@@ -37,7 +37,7 @@ def selectWifi():
 	if request.method == 'POST':
 		logger.info("joinwifi:" + request.form['joinwifi'])
 		if request.form['joinwifi'] == 'true':
-			join_wifi(request.form['ssid'], request.form['password'])
+			joinWifi(request.form['ssid'], request.form['password'])
 	# nothing to to - we'll keep the wifi in ap mode
 
 	return jsonify(result='{success: true}')
