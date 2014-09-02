@@ -52,6 +52,8 @@ def doWifiScan():
 def joinWifi(ssid, password):
 	# to do: create wifi config for new wifi, stop & disable hostapd & dhcp, activate wifi in client mode
 
+	logger.info("joinwifi")
+
 	interfaces_template = '''
 auto lo
 
