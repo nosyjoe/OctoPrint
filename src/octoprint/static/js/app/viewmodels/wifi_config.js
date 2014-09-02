@@ -2,36 +2,36 @@ function WifiConfigViewModel() {
     var self = this;
 
     self.ssids = ko.observableArray(undefined);
-	this.selectedSSIDs = ko.observableArray(["Ham"]);       
+	self.selectedSSIDs = ko.observableArray(undefined);
+    self.password = ko.observable(undefined);
 	
 	// Load all available countries /v1/countries
-	self.loadSSIDs = function(callback) {
+	self.loadSSIDs = function(data) {
 		// Let loading indicator know that there's a new loading task that ought to complete
 		// self.loading.push(true);
  
-		$.getJSON('/api/wificfg',
-			function(data) {
-				console.log("loaded countries")
+		$.getJSON('/api/wifi/scan',
+			function(data, callback) {
+				console.log("Wifi scan complete:")
 				console.dir(data);
  
 				self.ssids(data.ssids);
 				// Let loading indicator know that this task has been completed
 				// self.loading.pop();
 				// Try to call success callback, which is loadUser if and only if all parallel processes have completed
-				if (callback) {callback();}
+//				if (callback) callback();
 			}
 		);
 	}
-	
+
 
     self.joinExistingWifi = function() {
-        if (!self.validData()) return;
+//        if (!self.validData()) return;
 
         var data = {
-            "ac": true,
-            "user": self.username(),
-            "pass1": self.password(),
-            "pass2": self.confirmedPassword()
+            "joinwifi": true,
+            "ssid": self.selectedSSIDs[0],
+            "password": self.password()
         };
         self._sendData(data);
     };
@@ -46,7 +46,7 @@ function WifiConfigViewModel() {
             $("#confirmation_dialog").modal("hide");
 
             var data = {
-                "ac": false
+                "joinwifi": false
             };
             self._sendData(data, function() {
                 // if the user indeed disables access control, we'll need to reload the page for this to take effect
@@ -56,14 +56,18 @@ function WifiConfigViewModel() {
         $("#confirmation_dialog").modal("show");
     };
 
+    self.validPassword = ko.computed(function() {
+        return self.password() && self.password().trim() != "";
+    });
+
     self._sendData = function(data, callback) {
         $.ajax({
-            url: API_BASEURL + "setup",
+            url: API_BASEURL + "wifi/join",
             type: "POST",
             dataType: "json",
             data: data,
             success: function() {
-                self.closeDialog();
+//                self.closeDialog();
                 if (callback) callback();
             }
         });

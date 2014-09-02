@@ -113,11 +113,18 @@
         <p>
             Here you can find a list of Wifi networks. Select one of them and optionally enter a password to make you Mr Beam join the Wifi. You can also choose to keep an extra Wifi your Mr Beam.
         </p>
+        <button data-bind="click: loadSSIDs">Refresh</button>
         <form class="form-horizontal">
             <div class="control-group">
+                <label class="control-label" for="first_run_username">Wifi Name</label>
+                <div class="controls">
+                    <select height="5" class="list-group" data-bind="options:ssids, selectedOptions:selectedSSIDs"> </select>
+                </div>
+            </div>
+            <div class="control-group" data-bind="css: {success: validPassword()}">
                 <label class="control-label" for="first_run_username">Password</label>
                 <div class="controls">
-                    <select multiple="multiple" height="5" class="list-group" data-bind="options:ssids, selectedOptions:selectedSSIDs"> </select>
+                    <input type="password" class="input-medium" data-bind="value: password, valueUpdate: 'afterkeydown'">
                 </div>
             </div>
         </form>
