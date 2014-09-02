@@ -42,14 +42,11 @@ def selectWifi():
 
 def doWifiScan():
 	ssidlist = []
-	try:
-		iw_scan = subprocess.check_output(['/sbin/iw', 'wlan1', 'scan', 'ap-force'],
+
+	iw_scan = subprocess.check_output(['sudo', '/sbin/iw', 'wlan1', 'scan', 'ap-force'],
 										  stderr=subprocess.STDOUT)
-		ssidlist = re.findall(r'SSID: (.*)$', iw_scan, re.MULTILINE)
-	except subprocess.CalledProcessError as e:
-		print e
-	else:
-		iw_scan = iw_scan.decode('utf-8')
+	ssidlist = re.findall(r'SSID: (.*)$', iw_scan, re.MULTILINE)
+
 	return ssidlist
 
 def joinWifi(ssid, password):
