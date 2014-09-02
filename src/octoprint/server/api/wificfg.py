@@ -33,8 +33,10 @@ def scanWifis():
 @api.route("/wifi/join", methods=["POST"])
 def selectWifi():
 	error = None
+	logger = logging.getLogger(__name__)
 	if request.method == 'POST':
-		if request.form['joinwifi'] == True:
+		logger.info("joinwifi:" + request.form['joinwifi'])
+		if request.form['joinwifi'] == 'true':
 			join_wifi(request.form['ssid'], request.form['password'])
 	# nothing to to - we'll keep the wifi in ap mode
 
@@ -52,6 +54,7 @@ def doWifiScan():
 def joinWifi(ssid, password):
 	# to do: create wifi config for new wifi, stop & disable hostapd & dhcp, activate wifi in client mode
 
+	logger = logging.getLogger(__name__)
 	logger.info("joinwifi")
 
 	interfaces_template = '''
